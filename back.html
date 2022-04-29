@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav{display: flex;
+            justify-content: space-between;
+            background-color: rgb(130, 111, 148);
+            margin-bottom: 100px;
+        
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="nav">
+    <p class="ab"><a href="frontend.html">frontend</a></p>
+    <p class="ab"><a href="back.html">backend</a></p>
+    </div>
+    <form id="iform">
+        <input id="img" type="text" placeholder="Enter img url here">
+        <input id="name" type="text" placeholder="Enter Name here">
+        <input id="role" type="text" placeholder="Enter role here">
+        <input id="logo" type="text" placeholder="Enter logo url here">
+        <input type="submit"/>
+
+    </form>
+</body>
+</html>
+<script>
+    document.querySelector("#iform").addEventListener("submit",ifun);
+    var arr=JSON.parse(localStorage.getItem("investorData")) || [];
+    function ifun(){
+        event.preventDefault();
+        var invObj={
+            investorImg: iform.img.value,
+            investorName: iform.name.value,
+            investorRole: iform.role.value,
+            investorLogo: iform.logo.value
+        }
+        
+        arr.push(invObj);
+        console.log(arr);
+        localStorage.setItem("investorData",JSON.stringify(arr));
+        window.location.href="frontend.html";
+    }
+</script>

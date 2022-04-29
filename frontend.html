@@ -7,31 +7,33 @@
     <title>Document</title>
 </head>
 <body>
-    <form id="iform">
-        <input id="img" type="text" placeholder="Enter img url here">
-        <input id="name" type="text" placeholder="Enter Name here">
-        <input id="role" type="text" placeholder="Enter role here">
-        <input id="logo" type="text" placeholder="Enter logo url here">
-        <input type="submit"/>
+    <div id="card">
 
-    </form>
+    </div>
 </body>
 </html>
 <script>
-    document.querySelector("#iform").addEventListener("submit",ifun);
-    var arr=JSON.parse(localStorage.getItem("investorData")) || [];
-    function ifun(){
-        event.preventDefault();
-        var invObj={
-            investorImg: iform.img.value,
-            investorName: iform.name.value,
-            investorRole: iform.role.value,
-            investorLogo: iform.logo.value
-        }
+    var invData=JSON.parse(localStorage.getItem("investorData"));
+
+    invData.forEach(function(element){
+        const box = document.createElement('div');
+        const inv_img = document.createElement('img');
+        inv_img.setAttribute("src",element.investorImg);
+
+        const inv_name = document.createElement('h3');
+        inv_name.innerText= element.investorName;
+
+        const inv_role = document.createElement('p');
+        inv_role.innerText=element.investorRole;
+
+        const inv_logo = document.createElement('img');
+        inv_img.setAttribute("src",element.investorLogo);
+
+        box.append(inv_img,inv_name,inv_role,inv_logo);
+        document.querySelector('#card').append(box);
         
-        arr.push(invObj);
-        console.log(arr);
-        localStorage.setItem("investorData",JSON.stringify(arr));
-        window.location.href="backend.html";
-    }
+    });
+
+
+
 </script>
